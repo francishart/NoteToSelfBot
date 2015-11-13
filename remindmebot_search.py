@@ -25,16 +25,16 @@ from threading import Thread
 # =============================================================================
 
 # Reads the config file
-config = ConfigParser.ConfigParser()
-config.read("remindmebot.cfg")
+# config = ConfigParser.ConfigParser()
+# config.read("remindmebot.cfg")
 
 #Reddit info
-reddit = praw.Reddit(user_agent= "RemindMes")
+reddit = praw.Reddit(user_agent= "NTSBot 1.0")
 o = OAuth2Util.OAuth2Util(reddit, print_log = True)
 o.refresh(force=True)
 
-DB_USER = config.get("SQL", "user")
-DB_PASS = config.get("SQL", "passwd")
+# DB_USER = config.get("SQL", "user")
+# DB_PASS = config.get("SQL", "passwd")
 
 # Time when program was started
 START_TIME = time.time()
@@ -318,7 +318,7 @@ def check_comment(comment):
 
 def main():
     print "start"
-    read_pm()
+    # read_pm()
 
     while True:
         try:
@@ -330,8 +330,9 @@ def main():
                 # object constructor requires empty attribute
                 rawcomment['_replies'] = ''
                 comment = praw.objects.Comment(reddit, rawcomment)
-                check_comment(comment)
-            read_pm()
+                #check_comment(comment)
+                print(comment)
+            #read_pm()
             print "----"
             time.sleep(30)
         except Exception as err:
